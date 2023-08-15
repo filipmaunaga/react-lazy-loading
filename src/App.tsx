@@ -7,15 +7,19 @@ function App() {
   const [query, setQuery] = useState('');
   const [pageNumber, setPageNumber] = useState(1);
 
-  useBookSearch(query, pageNumber);
+  const { isLoading, isError, books, hasMore } = useBookSearch(
+    query,
+    pageNumber
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setPageNumber(1);
+  };
 
   return (
     <div className='App'>
-      <input
-        type='text'
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      ></input>
+      <input type='text' value={query} onChange={handleSearch}></input>
     </div>
   );
 }
