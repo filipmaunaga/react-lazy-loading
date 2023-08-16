@@ -8,6 +8,10 @@ export const useBookSearch = (query: string, pageNumber: number) => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    setBooks([]);
+  }, [query]);
+
+  useEffect(() => {
     setIsLoading(true);
     setIsError(false);
     const controller = new AbortController();
